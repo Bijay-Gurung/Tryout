@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Data-Toggle-dropdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .dropdown-menu{
+            display: none;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>Data-Toggle => Dropdown</h2>
+    <div class="dropdown">
+        <button type="button"
+            class="btn btn-primary"
+            id="dropDownButton"
+            data-toggle="dropdown"
+            aria-expanded="false">
+            Programming Languages
+            <span class="caret"></span>
+        </button>
+         
+        <ul class="dropdown-menu" aria-labelledby="dropDownButton">
+            <li><a href="#">C++</a></li>
+            <li><a href="#">Python</a></li>
+            <li><a href="#">R</a></li>
+            <li><a href="#">Java</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const button = document.querySelector("#dropDownButton");
+        const list = document.querySelector(".dropdown-menu");
+
+        button.addEventListener('click',() => {
+            if (list.style.display === "none" || list.style.display === "") {
+                list.style.display = "block";
+            } else {
+                list.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
