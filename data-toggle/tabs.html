@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-decoration: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: darkcyan;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header nav a {
+            padding: 10px 25px;
+            color: #fff;
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+
+        header nav a.active,
+        header nav a:hover {
+            background: #fff;
+            color: darkcyan;
+        }
+
+        section {
+            text-align: center;
+            padding-top: 250px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="active" data-toggle="tab1">Home</a>
+            <a href="#" data-toggle="tab2">About</a>
+            <a href="#" data-toggle="tab3">Service</a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="content" id="tab1">Content for tab1</div>
+        <div class="content" id="tab2">Content for tab2</div>
+        <div class="content" id="tab3">Content for tab3</div>
+    </section>
+
+    <script>
+        const tabLinks = document.querySelectorAll('header nav a');
+        const tabContents = document.querySelectorAll('section .content');
+
+        tabLinks.forEach(tabLink => {
+            tabLink.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                tabLink.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                const targetId = tabLink.getAttribute('data-toggle');
+                const targetContent = document.getElementById(targetId);
+                targetContent.style.display = 'block';
+            });
+        });
+
+        const initialActiveTab = document.querySelector('header nav a.active');
+        const initialTargetId = initialActiveTab.getAttribute('data-toggle');
+        const initialTargetContent = document.getElementById(initialTargetId);
+        initialTargetContent.style.display = 'block';
+    </script>
+</body>
+</html>
